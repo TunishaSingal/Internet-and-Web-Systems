@@ -1,0 +1,165 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<style type="text/css">
+li{
+	color:white;
+	background-color: FireBrick;
+	border-radius:12px;
+	text-align:center;
+	padding-top:15px;
+	padding-bottom:15px;
+	margin-bottom:20px;
+	margin-top:20px;
+	width:50%;
+}
+h1{
+color: indigo;
+}
+canvas{
+width:30%;
+float:right;
+}
+body{
+background-color:beige;
+}
+</style>
+  
+</HEAD>
+<BODY>
+<h1> Select a Shape: </h1>
+<img id="cir" src="circle.jpg" width="30" height="30">
+<img id="tri" src="triangle.jpg" width="30" height="30">
+<img id="squ" src="square.png" width="30" height="30">
+<img id="rec" src="rectangle.png" width="30" height="30">
+<img id="hex" src="hexagon.png" width="30" height="30">
+<canvas id="myCanvas" width="80" height="80" style="border:2px solid #d3d3d3;"> </canvas>
+<ol>
+
+<li onclick="circle()">Circle </li>
+<section id="circle_detail" style="display:none">
+Enter radius (r): <input type="text" id="radius" value=""><br>
+<button name="submit" type="submit" id="circle-submit" onclick="cal_circle()">SUBMIT</button>
+</section>
+<section id="circle_display" style="display:none">
+<p id="circle_param"></p>
+</section>
+
+<li onclick="triangle()">Triangle</li>
+<section id="triangle_detail" style="display:none">
+Enter side A: <input type="text" id="sideA"><br>
+Enter side B: <input type="text" id="sideB"><br>
+Enter side C: <input type="text" id="sideC"><br>
+<button name="submit" type="submit" id="triangle-submit" onclick="cal_triangle()">SUBMIT</button>
+</section>
+<section id="triangle_display" style="display:none">
+<p id="triangle_param"></p>
+</section>
+
+<li onclick="square()">Square</li>
+<section id="square_detail" style="display:none">
+Enter length (a): <input type="text" id="square_len"><br>
+<button name="submit" type="submit" id="square-submit" onclick="cal_square()">SUBMIT</button>
+</section>
+<section id="square_display" style="display:none">
+<p id="square_param"></p>
+</section>
+
+<li onclick="rectangle()">Rectangle</li>
+<section id="rectangle_detail" style="display:none">
+Enter length (l): <input type="text" id="length" value=""><br>
+Enter breadth (b): <input type="text" id="breadth" value=""><br>
+<button name="submit" type="submit" id="rectangle-submit" onclick="cal_rectangle()">SUBMIT</button>
+</section>
+<section id="rectangle_display" style="display:none">
+<p id="rectangle_param"></p>
+</section>
+
+<li onclick="hexagon()">Hexagon</li>
+<section id="hexagon_detail" style="display:none">
+Enter length: <input type="text" id="hexagon_len"><br>
+<button name="submit" type="submit" id="hexagon-submit" onclick="cal_hexagon()">SUBMIT</button>
+</section>
+<section id="hexagon_display" style="display:none">
+<p id="hexagon_param"></p>
+</section>
+
+</ol>
+</BODY>
+</HTML>
+
+      <script type="text/javascript">
+	function circle() {
+            document.getElementById('circle_detail').style.display = 'block';}
+        function triangle() {
+            document.getElementById('triangle_detail').style.display = 'block';}
+		function square() {
+            document.getElementById('square_detail').style.display = 'block';}
+		function rectangle() {
+            document.getElementById('rectangle_detail').style.display = 'block';}
+		function hexagon() {
+            document.getElementById('hexagon_detail').style.display = 'block';}
+			
+		function cal_circle() {
+			document.getElementById('circle_display').style.display = 'block';
+			var r = parseInt(document.getElementById('radius').value);
+			var peri = 2*3.14*r;
+			var area = 3.14*r*r;
+			document.getElementById('circle_param').innerHTML = "Perimeter : " + peri +"<br> Area : " + area;
+			var c= document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("cir");
+ctx.drawImage(img,0,0,80,80);
+		}		
+		function cal_triangle() {
+			document.getElementById('triangle_display').style.display = 'block';
+			var x = parseInt(document.getElementById('sideA').value);
+			var y = parseInt(document.getElementById('sideB').value);
+			var z = parseInt(document.getElementById('sideC').value);
+			var peri = x + y + z;
+			var s = peri*0.5;
+			var area = Math.sqrt(s*(s-x)*(s-y)*(s-z));
+			document.getElementById('triangle_param').innerHTML = "Perimeter : " + peri +"<br> Area : " + area;
+	var c= document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("tri");
+ctx.drawImage(img,0,0,80,80);		
+}
+		function cal_square() {
+			document.getElementById('square_display').style.display = 'block';
+			var a = parseInt(document.getElementById('square_len').value);
+			var peri = 4*a;
+			var area = a*a;
+			document.getElementById('square_param').innerHTML = "Perimeter : " + peri +"<br> Area : " + area; 
+			
+	var c= document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("squ");
+ctx.drawImage(img,0,0,80,80);
+		}
+		function cal_rectangle() {
+			document.getElementById('rectangle_display').style.display = 'block';
+			var length = parseInt(document.getElementById('length').value);
+			var breadth = parseInt(document.getElementById('breadth').value);
+			var peri = 2*(length+breadth);
+			var area =length*breadth;
+			document.getElementById('rectangle_param').innerHTML = "Perimeter : " + peri +"<br> Area : " + area;
+	var c= document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("rec");
+ctx.drawImage(img,0,0,80,80);		
+}
+		function cal_hexagon() {
+			document.getElementById('hexagon_display').style.display = 'block';
+			var l = parseInt(document.getElementById('hexagon_len').value);
+			var peri = 6*l;
+			var area = 2.59*l*l;
+			document.getElementById('hexagon_param').innerHTML = "Perimeter : " + peri +"<br> Area : " + area;
+	var c= document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("hex");
+ctx.drawImage(img,0,0,80,80);
+		}
+      </script>
